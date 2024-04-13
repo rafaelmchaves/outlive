@@ -10,8 +10,8 @@ import java.util.UUID;
 @Getter
 @Entity
 @Table(name = "users")
-@AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
 public class UserEntity {
 
     @Id
