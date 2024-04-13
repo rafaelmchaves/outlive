@@ -20,10 +20,8 @@ public class UserService {
 
     public UserResponse create(UserRequest userRequest) {
 
-        final var user = UserEntity.builder().firstName(userRequest.getFirstName()).lastName(userRequest.getLastName())
-                .birthDate(userRequest.getBirthDate()).password(userRequest.getPassword())
-                .creation(LocalDateTime.now())
-                .build();
+        final var user = userMapper.convert(userRequest);
+        user.setCreation(LocalDateTime.now());
 
         final var persistedUser = this.repository.save(user);
 

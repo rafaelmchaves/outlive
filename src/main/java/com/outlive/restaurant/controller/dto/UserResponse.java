@@ -10,5 +10,7 @@ public class UserResponse {
     private String id;
     private String firstName;
     private String lastName;
+    private UserStatus status;
+    private UserType type;
 
 }

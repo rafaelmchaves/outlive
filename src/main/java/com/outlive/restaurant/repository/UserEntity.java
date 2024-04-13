@@ -1,11 +1,14 @@
 package com.outlive.restaurant.repository;
 
+import com.outlive.restaurant.controller.dto.UserStatus;
+import com.outlive.restaurant.controller.dto.UserType;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Setter
 @Builder
 @Getter
 @Entity
@@ -28,6 +31,12 @@ public class UserEntity {
     private String birthDate;
 
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
+
+    @Enumerated(EnumType.STRING)
+    private UserType type;
 
     @Column(name = "created_on")
     private LocalDateTime creation;
