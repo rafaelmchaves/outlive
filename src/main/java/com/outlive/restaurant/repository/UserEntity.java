@@ -1,7 +1,7 @@
 package com.outlive.restaurant.repository;
 
-import com.outlive.restaurant.controller.dto.UserStatus;
-import com.outlive.restaurant.controller.dto.UserType;
+import com.outlive.restaurant.dto.UserStatus;
+import com.outlive.restaurant.dto.UserType;
 import jakarta.persistence.*;
 import lombok.*;
 

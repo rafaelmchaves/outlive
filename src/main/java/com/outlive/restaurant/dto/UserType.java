@@ -1,4 +1,4 @@
-package com.outlive.restaurant.controller.dto;
+package com.outlive.restaurant.dto;
 
 public enum UserType {
 

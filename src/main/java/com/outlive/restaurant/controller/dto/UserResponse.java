@@ -1,5 +1,7 @@
 package com.outlive.restaurant.controller.dto;
 
+import com.outlive.restaurant.dto.UserStatus;
+import com.outlive.restaurant.dto.UserType;
 import lombok.Builder;
 import lombok.Getter;
 
