@@ -17,5 +17,7 @@ public class UserRequest {
     private UserType type;
     private SellerRequest seller;
     private CustomerRequest customer;
+    private String phone;
+    private String email;
 
 }

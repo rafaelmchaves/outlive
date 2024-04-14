@@ -4,10 +4,9 @@ import com.outlive.restaurant.controller.dto.ProductRequest;
 import com.outlive.restaurant.controller.dto.ProductResponse;
 import com.outlive.restaurant.dto.ProductSearchDto;
 import com.outlive.restaurant.dto.ProductStatus;
-import com.outlive.restaurant.dto.UserType;
 import com.outlive.restaurant.mapper.ProductMapper;
 import com.outlive.restaurant.repository.ProductRepository;
-import com.outlive.restaurant.repository.UserRepository;
+import com.outlive.restaurant.repository.SellerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,21 +22,17 @@ public class ProductService {
 
     private final ProductRepository repository;
 
-    private final UserRepository userRepository;
+    private final SellerRepository sellerRepository;
 
     public ProductResponse create(ProductRequest productRequest) {
 
-        final var user = this.userRepository.findById(UUID.fromString(productRequest.getSellerId())).orElseThrow(() ->
-                new RuntimeException("User not found"));
-
-        if (!user.getType().equals(UserType.SELLER)) {
-            throw new RuntimeException("Only sellers are able to sell products");
-        }
+        final var seller = this.sellerRepository.findById(UUID.fromString(productRequest.getSellerId())).orElseThrow(() ->
+                new RuntimeException("Seller not found"));
 
         final var entity = productMapper.convert(productRequest);
         entity.setCreation(LocalDateTime.now());
         entity.setStatus(ProductStatus.AVAILABLE);
-        entity.setUser(user);
+        entity.setSeller(seller);
 
         final var persistedProduct = repository.save(entity);
         return productMapper.convert(persistedProduct);

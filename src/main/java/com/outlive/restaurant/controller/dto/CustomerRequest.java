@@ -1,10 +1,12 @@
 package com.outlive.restaurant.controller.dto;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 @Getter
 public class CustomerRequest {
-    private String birthDate;
+
+    private String birthdate;
 }

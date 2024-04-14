@@ -2,7 +2,7 @@ package com.outlive.restaurant.dto;
 
 public enum UserType {
 
-    CLIENT,
+    CUSTOMER,
     SELLER,
     ADMIN
 }

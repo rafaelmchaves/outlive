@@ -20,8 +20,7 @@ public class SellerEntity {
 
     @JoinColumn(name = "user_id")
     @ManyToOne
-    @Column(name = "user_id")
-    private String userId;
+    private UserEntity user;
 
     private String description;
 
