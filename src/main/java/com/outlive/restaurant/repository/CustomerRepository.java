@@ -1,5 +1,6 @@
 package com.outlive.restaurant.repository;
 
+import com.outlive.restaurant.repository.entity.CustomerEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

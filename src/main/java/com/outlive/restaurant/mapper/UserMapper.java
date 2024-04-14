@@ -2,7 +2,7 @@ package com.outlive.restaurant.mapper;
 
 import com.outlive.restaurant.controller.dto.UserRequest;
 import com.outlive.restaurant.controller.dto.UserResponse;
-import com.outlive.restaurant.repository.UserEntity;
+import com.outlive.restaurant.repository.entity.UserEntity;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

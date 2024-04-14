@@ -5,7 +5,7 @@ import com.outlive.restaurant.controller.dto.ProductResponse;
 import com.outlive.restaurant.dto.ProductSearchDto;
 import com.outlive.restaurant.dto.ProductStatus;
 import com.outlive.restaurant.mapper.ProductMapper;
-import com.outlive.restaurant.repository.ProductEntity;
+import com.outlive.restaurant.repository.entity.ProductEntity;
 import com.outlive.restaurant.repository.ProductRepository;
 import com.outlive.restaurant.repository.SellerRepository;
 import lombok.RequiredArgsConstructor;

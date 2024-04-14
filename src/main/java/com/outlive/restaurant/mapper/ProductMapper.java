@@ -2,7 +2,7 @@ package com.outlive.restaurant.mapper;
 
 import com.outlive.restaurant.controller.dto.ProductRequest;
 import com.outlive.restaurant.controller.dto.ProductResponse;
-import com.outlive.restaurant.repository.ProductEntity;
+import com.outlive.restaurant.repository.entity.ProductEntity;
 import org.mapstruct.Mapper;
 
 import java.util.List;

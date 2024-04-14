@@ -1,4 +1,4 @@
-package com.outlive.restaurant.repository;
+package com.outlive.restaurant.repository.entity;
 
 import com.outlive.restaurant.dto.UserStatus;
 import com.outlive.restaurant.dto.UserType;

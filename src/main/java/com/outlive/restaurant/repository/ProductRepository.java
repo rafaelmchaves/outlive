@@ -1,5 +1,6 @@
 package com.outlive.restaurant.repository;
 
+import com.outlive.restaurant.repository.entity.ProductEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

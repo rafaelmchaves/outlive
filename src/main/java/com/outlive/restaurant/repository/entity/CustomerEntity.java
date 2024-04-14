@@ -1,4 +1,4 @@
-package com.outlive.restaurant.repository;
+package com.outlive.restaurant.repository.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
