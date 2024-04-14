@@ -9,4 +9,6 @@ import java.util.UUID;
 public interface ProductRepository extends CrudRepository<ProductEntity, UUID> {
 
     List<ProductEntity> findByNameContainingIgnoreCase(String name);
+
+    List<ProductEntity> findBySellerId(UUID sellerId);
 }

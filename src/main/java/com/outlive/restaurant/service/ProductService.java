@@ -44,6 +44,8 @@ public class ProductService {
         List<ProductEntity> productEntities = null;
         if (productSearchDto.getName() != null) {
             productEntities = repository.findByNameContainingIgnoreCase(productSearchDto.getName());
+        } else if (productSearchDto.getSellerId() != null) {
+            productEntities = repository.findBySellerId(UUID.fromString(productSearchDto.getSellerId()));
         }
 
         return productMapper.convert(productEntities);

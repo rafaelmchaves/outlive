@@ -29,8 +29,9 @@ public class ProductController {
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/users/{userId}/products/")
-    ResponseEntity<List<ProductResponse>> getAllBySeller(@PathVariable String userId) {
-        return ResponseEntity.ok().build();
+    @GetMapping("/sellers/{sellerId}/products")
+    ResponseEntity<List<ProductResponse>> getAllBySeller(@PathVariable String sellerId) {
+        final var result = productService.searchProducts(ProductSearchDto.builder().sellerId(sellerId).build());
+        return ResponseEntity.ok(result);
     }
 }
