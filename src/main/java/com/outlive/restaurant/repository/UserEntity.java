@@ -27,9 +27,6 @@ public class UserEntity {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "birth_date")
-    private String birthDate;
-
     private String password;
 
     @Enumerated(EnumType.STRING)

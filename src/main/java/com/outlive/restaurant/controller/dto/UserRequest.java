@@ -12,9 +12,10 @@ public class UserRequest {
 
     private String firstName;
     private String lastName;
-    private String birthDate;
     private String password;
     private UserStatus status;
     private UserType type;
+    private SellerRequest seller;
+    private CustomerRequest customer;
 
 }

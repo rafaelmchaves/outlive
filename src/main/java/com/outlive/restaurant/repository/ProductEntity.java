@@ -4,7 +4,6 @@ import com.outlive.restaurant.dto.ProductStatus;
 import com.outlive.restaurant.dto.ProductType;
 import jakarta.persistence.*;
 import lombok.*;
-import org.apache.catalina.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -41,7 +40,7 @@ public class ProductEntity {
     @Column(name = "updated_on")
     private LocalDateTime update;
 
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "seller_id")
     @ManyToOne
-    private UserEntity user;
+    private SellerEntity seller;
 }
