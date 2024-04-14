@@ -43,7 +43,7 @@ public class ProductService {
 
         List<ProductEntity> productEntities = null;
         if (productSearchDto.getName() != null) {
-            productEntities = repository.findByNameContaining(productSearchDto.getName());
+            productEntities = repository.findByNameContainingIgnoreCase(productSearchDto.getName());
         }
 
         return productMapper.convert(productEntities);
