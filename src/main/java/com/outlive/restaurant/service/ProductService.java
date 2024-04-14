@@ -5,6 +5,7 @@ import com.outlive.restaurant.controller.dto.ProductResponse;
 import com.outlive.restaurant.dto.ProductSearchDto;
 import com.outlive.restaurant.dto.ProductStatus;
 import com.outlive.restaurant.mapper.ProductMapper;
+import com.outlive.restaurant.repository.ProductEntity;
 import com.outlive.restaurant.repository.ProductRepository;
 import com.outlive.restaurant.repository.SellerRepository;
 import lombok.RequiredArgsConstructor;
@@ -40,6 +41,11 @@ public class ProductService {
 
     public List<ProductResponse> searchProducts(ProductSearchDto productSearchDto) {
 
-        return null;
+        List<ProductEntity> productEntities = null;
+        if (productSearchDto.getName() != null) {
+            productEntities = repository.findByNameContaining(productSearchDto.getName());
+        }
+
+        return productMapper.convert(productEntities);
     }
 }

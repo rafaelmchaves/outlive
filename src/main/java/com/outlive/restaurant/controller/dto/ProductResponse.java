@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @Getter
 @Builder
@@ -19,6 +18,6 @@ public class ProductResponse {
     private BigDecimal price;
     private BigDecimal quantity;
     private ProductStatus status;
-    private UserResponse seller;
+    private SellerResponse seller;
 
 }
