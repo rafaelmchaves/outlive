@@ -19,5 +19,6 @@ public class ProductResponse {
     private BigDecimal price;
     private BigDecimal quantity;
     private ProductStatus status;
+    private UserResponse seller;
 
 }

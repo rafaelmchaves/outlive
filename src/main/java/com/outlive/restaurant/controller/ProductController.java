@@ -2,6 +2,7 @@ package com.outlive.restaurant.controller;
 
 import com.outlive.restaurant.controller.dto.ProductRequest;
 import com.outlive.restaurant.controller.dto.ProductResponse;
+import com.outlive.restaurant.dto.ProductSearchDto;
 import com.outlive.restaurant.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,8 @@ public class ProductController {
 
     @GetMapping("/products")
     ResponseEntity<List<ProductResponse>> getAllByQuery(@RequestParam String name) {
-        return ResponseEntity.ok().build();
+        final var result = productService.searchProducts(ProductSearchDto.builder().name(name).build());
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/users/{userId}/products/")

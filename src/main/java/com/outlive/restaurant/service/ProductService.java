@@ -2,6 +2,7 @@ package com.outlive.restaurant.service;
 
 import com.outlive.restaurant.controller.dto.ProductRequest;
 import com.outlive.restaurant.controller.dto.ProductResponse;
+import com.outlive.restaurant.dto.ProductSearchDto;
 import com.outlive.restaurant.dto.ProductStatus;
 import com.outlive.restaurant.dto.UserType;
 import com.outlive.restaurant.mapper.ProductMapper;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -39,5 +41,10 @@ public class ProductService {
 
         final var persistedProduct = repository.save(entity);
         return productMapper.convert(persistedProduct);
+    }
+
+    public List<ProductResponse> searchProducts(ProductSearchDto productSearchDto) {
+
+        return null;
     }
 }
