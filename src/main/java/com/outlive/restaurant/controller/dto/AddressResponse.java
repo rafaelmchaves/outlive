@@ -7,8 +7,5 @@ import lombok.Getter;
 @Builder
 public class AddressResponse {
 
-    private String city;
-    private String state;
-    private String zipCode;
-    private String address;
+    private String id;
 }
