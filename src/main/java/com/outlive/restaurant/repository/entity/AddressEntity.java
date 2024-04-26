@@ -2,9 +2,8 @@ package com.outlive.restaurant.repository.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.apache.catalina.User;
 
-import java.util.UUID;
+import java.time.LocalDateTime;
 
 @Setter
 @Builder
@@ -16,7 +15,7 @@ import java.util.UUID;
 public class AddressEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     private String cep;
@@ -29,6 +28,9 @@ public class AddressEntity {
 
     @JoinColumn(name = "user_id")
     @ManyToOne
-    private User user;
+    private UserEntity user;
+
+    @Column(name = "creation_on")
+    private LocalDateTime creation;
 
 }
