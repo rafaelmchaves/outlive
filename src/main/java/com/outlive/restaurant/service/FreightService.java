@@ -1,6 +1,7 @@
 package com.outlive.restaurant.service;
 
 import com.outlive.restaurant.controller.dto.FreightRequest;
+import com.outlive.restaurant.repository.AddressRepository;
 import com.outlive.restaurant.repository.FreightRepository;
 import com.outlive.restaurant.repository.SellerRepository;
 import com.outlive.restaurant.repository.entity.FreightEntity;
@@ -17,6 +18,8 @@ public class FreightService {
     private final FreightRepository repository;
 
     private final SellerRepository sellerRepository;
+
+    private final AddressRepository addressRepository;
 
     public void updateFreight(FreightRequest freightRequest) {
 
@@ -36,6 +39,22 @@ public class FreightService {
         var freight = repository.findByCepAndSellerId(cep, UUID.fromString(sellerId));
         if(freight == null) {
             freight = repository.findByCityAndCepAndSellerId(city, null, UUID.fromString(sellerId));
+        }
+
+        return Optional.ofNullable(freight);
+
+    }
+
+    public Optional<FreightEntity> getFreight(Long addressId, String sellerId) {
+
+        final var address = addressRepository.findById(addressId);
+        if (address.isEmpty()) {
+            throw new RuntimeException("Address not found");
+        }
+
+        var freight = repository.findByCepAndSellerId(address.get().getCep(), UUID.fromString(sellerId));
+        if(freight == null) {
+            freight = repository.findByCityAndCepAndSellerId(address.get().getCity(), null, UUID.fromString(sellerId));
         }
 
         return Optional.ofNullable(freight);
