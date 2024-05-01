@@ -1,5 +1,6 @@
 package com.outlive.restaurant.repository.entity;
 
+import com.outlive.restaurant.dto.OrderStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,8 +28,8 @@ public class OrderProductEntity {
     @ManyToOne
     private ProductEntity product;
 
-    @Column(name = "status")
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
 
     private Integer quantity;
 

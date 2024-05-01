@@ -2,6 +2,7 @@ package com.outlive.restaurant.service;
 
 import com.outlive.restaurant.controller.dto.OrderProductRequest;
 import com.outlive.restaurant.controller.dto.OrderRequest;
+import com.outlive.restaurant.dto.OrderStatus;
 import com.outlive.restaurant.dto.ProductStatus;
 import com.outlive.restaurant.repository.*;
 import com.outlive.restaurant.repository.entity.*;
@@ -58,7 +59,7 @@ public class OrderService {
                     .orElseThrow(() -> new RuntimeException("Product not found"));
             validateProduct(orderProductRequest, product);
             orderProductEntities.add(OrderProductEntity.builder()
-                    .product(product).status("CREATED").quantity(orderProductRequest.getAmount())
+                    .product(product).status(OrderStatus.CREATED).quantity(orderProductRequest.getAmount())
                     .price(product.getPrice()).build());
         }
 
@@ -89,7 +90,7 @@ public class OrderService {
 
     private OrderEntity createOrder(OrderRequest orderRequest, CustomerEntity customer, AddressEntity address, FreightEntity freight, BigDecimal totalValueOrder) {
         final var order = OrderEntity.builder().itemsAmount(orderRequest.getOrders().size()).creation(LocalDateTime.now())
-                    .paymentMethod(orderRequest.getPaymentMethod()).status("CREATED").freightValue(freight.getPrice())
+                    .paymentMethod(orderRequest.getPaymentMethod()).status(OrderStatus.CREATED).freightValue(freight.getPrice())
                 .totalValue(totalValueOrder).customer(customer)
                 .address(address)
                 .build();

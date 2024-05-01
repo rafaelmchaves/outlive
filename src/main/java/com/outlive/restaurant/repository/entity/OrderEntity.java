@@ -1,5 +1,6 @@
 package com.outlive.restaurant.repository.entity;
 
+import com.outlive.restaurant.dto.OrderStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,7 +33,8 @@ public class OrderEntity {
     @Column(name = "payment_method")
     private String paymentMethod;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
 
     @JoinColumn(name = "address_id")
     @ManyToOne
