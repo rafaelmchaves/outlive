@@ -24,14 +24,14 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    ResponseEntity<List<ProductResponse>> getAllByQuery(@RequestParam String name) {
-        final var result = productService.searchProducts(ProductSearchDto.builder().name(name).build());
+    ResponseEntity<List<ProductResponse>> getAllByQuery(@RequestParam String name, @RequestParam int page, @RequestParam int size) {
+        final var result = productService.searchProducts(ProductSearchDto.builder().name(name).page(page).size(size).build());
         return ResponseEntity.ok(result);
     }
 
     @GetMapping("/sellers/{sellerId}/products")
-    ResponseEntity<List<ProductResponse>> getAllBySeller(@PathVariable String sellerId) {
-        final var result = productService.searchProducts(ProductSearchDto.builder().sellerId(sellerId).build());
+    ResponseEntity<List<ProductResponse>> getAllBySeller(@PathVariable String sellerId, @RequestParam int page, @RequestParam int size) {
+        final var result = productService.searchProducts(ProductSearchDto.builder().sellerId(sellerId).page(page).size(size).build());
         return ResponseEntity.ok(result);
     }
 }

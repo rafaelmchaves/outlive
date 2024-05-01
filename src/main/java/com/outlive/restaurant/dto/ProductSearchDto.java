@@ -9,4 +9,6 @@ public class ProductSearchDto {
 
     private String name;
     private String sellerId;
+    private int page;
+    private int size;
 }

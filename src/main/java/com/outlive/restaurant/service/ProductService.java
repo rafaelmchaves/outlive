@@ -9,6 +9,8 @@ import com.outlive.restaurant.repository.entity.ProductEntity;
 import com.outlive.restaurant.repository.ProductRepository;
 import com.outlive.restaurant.repository.SellerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -42,10 +44,11 @@ public class ProductService {
     public List<ProductResponse> searchProducts(ProductSearchDto productSearchDto) {
 
         List<ProductEntity> productEntities = null;
+        Pageable pageable = PageRequest.of(productSearchDto.getPage(), productSearchDto.getSize());
         if (productSearchDto.getName() != null) {
-            productEntities = repository.findByNameContainingIgnoreCase(productSearchDto.getName());
+            productEntities = repository.findByNameContainingIgnoreCase(productSearchDto.getName(), pageable);
         } else if (productSearchDto.getSellerId() != null) {
-            productEntities = repository.findBySellerId(UUID.fromString(productSearchDto.getSellerId()));
+            productEntities = repository.findBySellerId(UUID.fromString(productSearchDto.getSellerId()),pageable);
         }
 
         return productMapper.convert(productEntities);
