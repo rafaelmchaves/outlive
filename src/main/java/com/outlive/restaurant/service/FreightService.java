@@ -45,19 +45,4 @@ public class FreightService {
 
     }
 
-    public Optional<FreightEntity> getFreight(Long addressId, String sellerId) {
-
-        final var address = addressRepository.findById(addressId);
-        if (address.isEmpty()) {
-            throw new RuntimeException("Address not found");
-        }
-
-        var freight = repository.findByCepAndSellerId(address.get().getCep(), UUID.fromString(sellerId));
-        if(freight == null) {
-            freight = repository.findByCityAndCepAndSellerId(address.get().getCity(), null, UUID.fromString(sellerId));
-        }
-
-        return Optional.ofNullable(freight);
-
-    }
 }

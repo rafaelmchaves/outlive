@@ -11,7 +11,7 @@ public class OrderRequest {
 
     private List<OrderProductRequest> orders;
 
-    private String userId;
+    private String customerId;
 
     private String addressId;
 

@@ -36,11 +36,11 @@ public class OrderEntity {
 
     @JoinColumn(name = "address_id")
     @ManyToOne
-    private AddressEntity addressEntity;
+    private AddressEntity address;
 
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "customer_id")
     @ManyToOne
-    private UserEntity user;
+    private CustomerEntity customer;
 
     @Column(name = "creation_on")
     private LocalDateTime creation;
