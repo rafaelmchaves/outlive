@@ -8,6 +8,7 @@ import com.outlive.restaurant.repository.*;
 import com.outlive.restaurant.repository.entity.*;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -31,6 +32,10 @@ public class OrderService {
     private final OrderRepository orderRepository;
 
     private final OrderProductRepository orderProductRepository;
+
+    public List<OrderEntity> getOrders(String customerId, int page, int size) {
+        return orderRepository.findByCustomerId(UUID.fromString(customerId), PageRequest.of(page, size));
+    }
 
     @Transactional
     public void create(OrderRequest orderRequest) {
