@@ -23,6 +23,7 @@ public class OrderController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @GetMapping("/customers/{id}/orders-detail")
     public ResponseEntity<OrderStatusResponse>getStatus() {
 
         return ResponseEntity.status(HttpStatus.OK).build();

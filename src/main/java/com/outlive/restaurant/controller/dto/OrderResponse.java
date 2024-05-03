@@ -16,5 +16,7 @@ public class OrderResponse {
     private OrderStatus status;
     private BigDecimal freightValue;
     private LocalDateTime date;
+    private String sellerName;
+
 
 }
