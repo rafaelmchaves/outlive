@@ -3,6 +3,7 @@ package com.outlive.restaurant.controller;
 import com.outlive.restaurant.controller.dto.AddressRequest;
 import com.outlive.restaurant.controller.dto.AddressResponse;
 import com.outlive.restaurant.service.AddressService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class AddressController {
     private final AddressService addressService;
 
     @PostMapping("/addresses")
-    public ResponseEntity<AddressResponse> createAddress(@RequestBody AddressRequest addressRequest) {
+    public ResponseEntity<AddressResponse> createAddress(@Valid @RequestBody AddressRequest addressRequest) {
        final var response = addressService.create(addressRequest);
        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
