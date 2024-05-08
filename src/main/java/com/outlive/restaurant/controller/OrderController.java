@@ -23,15 +23,15 @@ public class OrderController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("/customers/{id}/orders-detail")
-    public ResponseEntity<OrderStatusResponse>getStatus() {
+    @GetMapping("/orders/{id}/details")
+    public ResponseEntity<OrderStatusResponse>getStatus(@PathVariable String orderId) {
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @GetMapping("/customers/{id}/orders")
-    public ResponseEntity<List<OrderResponse>> getOrders(@PathVariable String id, @RequestParam int page, @RequestParam int size) {
-        final var orders = this.orderService.getOrders(id, page, size);
+    public ResponseEntity<List<OrderResponse>> getOrders(@PathVariable String customerId, @RequestParam int page, @RequestParam int size) {
+        final var orders = this.orderService.getOrders(customerId, page, size);
 
         final var orderResponseList = orders.stream().map(orderEntity -> OrderResponse.builder().id(orderEntity.getId().toString())
                 .totalValue(orderEntity.getTotalValue()).freightValue(orderEntity.getFreightValue()).status(orderEntity.getStatus())
