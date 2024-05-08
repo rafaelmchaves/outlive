@@ -1,5 +1,6 @@
 package com.outlive.restaurant.controller;
 
+import com.outlive.restaurant.controller.dto.OrderProductStatus;
 import com.outlive.restaurant.controller.dto.OrderRequest;
 import com.outlive.restaurant.controller.dto.OrderResponse;
 import com.outlive.restaurant.controller.dto.OrderStatusResponse;
@@ -24,12 +25,12 @@ public class OrderController {
     }
 
     @GetMapping("/orders/{id}/details")
-    public ResponseEntity<OrderStatusResponse>getStatus(@PathVariable String orderId) {
-
-        return ResponseEntity.status(HttpStatus.OK).build();
+    public ResponseEntity<List<OrderProductStatus>>getOrderDetails(@PathVariable String id) {
+        final var result = orderService.getOrdersDetails(id);
+        return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/customers/{id}/orders")
+    @GetMapping("/customers/{customerId}/orders")
     public ResponseEntity<List<OrderResponse>> getOrders(@PathVariable String customerId, @RequestParam int page, @RequestParam int size) {
         final var orders = this.orderService.getOrders(customerId, page, size);
 

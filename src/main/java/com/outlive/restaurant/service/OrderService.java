@@ -1,6 +1,7 @@
 package com.outlive.restaurant.service;
 
 import com.outlive.restaurant.controller.dto.OrderProductRequest;
+import com.outlive.restaurant.controller.dto.OrderProductStatus;
 import com.outlive.restaurant.controller.dto.OrderRequest;
 import com.outlive.restaurant.dto.OrderStatus;
 import com.outlive.restaurant.dto.ProductStatus;
@@ -35,6 +36,16 @@ public class OrderService {
 
     public List<OrderEntity> getOrders(String customerId, int page, int size) {
         return orderRepository.findByCustomerId(UUID.fromString(customerId), PageRequest.of(page, size));
+    }
+
+    public List<OrderProductStatus> getOrdersDetails(String orderId) {
+
+        final var productList = orderProductRepository.findByOrderId(UUID.fromString(orderId));
+
+        return productList.stream().map(orderProductEntity -> OrderProductStatus.builder()
+                .productName(orderProductEntity.getProduct().getName()).orderId(orderProductEntity.getId().toString())
+                .value(orderProductEntity.getPrice().multiply(new BigDecimal(orderProductEntity.getQuantity())))
+                .status(orderProductEntity.getStatus()).build()).toList();
     }
 
     @Transactional
