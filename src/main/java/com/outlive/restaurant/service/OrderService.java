@@ -5,6 +5,7 @@ import com.outlive.restaurant.controller.dto.OrderProductStatus;
 import com.outlive.restaurant.controller.dto.OrderRequest;
 import com.outlive.restaurant.dto.OrderStatus;
 import com.outlive.restaurant.dto.ProductStatus;
+import com.outlive.restaurant.exceptions.AddressNotFoundException;
 import com.outlive.restaurant.exceptions.CustomerNotFoundException;
 import com.outlive.restaurant.repository.*;
 import com.outlive.restaurant.repository.entity.*;
@@ -57,7 +58,7 @@ public class OrderService {
 
         List<OrderProductEntity> orderProducts = getOrderProducts(orderRequest);
 
-        final var address = addressRepository.findById(Long.valueOf(orderRequest.getAddressId())).orElseThrow(() -> new RuntimeException("Address not found"));
+        final var address = addressRepository.findById(Long.valueOf(orderRequest.getAddressId())).orElseThrow(() -> new AddressNotFoundException("Address not found"));
 
         final var freight = freightService.getFreight(address.getCep(), address.getCity(), orderProducts.get(0).getProduct().getSeller().getId().toString())
                 .orElseThrow(() -> new RuntimeException("There was a problem in our calculation of freight. Enter in contact with our support"));

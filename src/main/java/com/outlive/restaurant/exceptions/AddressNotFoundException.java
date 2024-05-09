@@ -8,10 +8,10 @@ import org.springframework.http.HttpStatus;
 
 @Slf4j
 @ExceptionMetadata(httpStatus = HttpStatus.BAD_REQUEST)
-public class CustomerNotFoundException extends CustomException {
-    public CustomerNotFoundException(String customerId) {
-        super("Customer not found", ErrorCode.CUSTOMER_NOT_FOUND.getCode());
-        log.error("Customer not found. Id: {}", customerId);
+public class AddressNotFoundException extends CustomException {
+    public AddressNotFoundException(String id) {
+        super("Address not found", ErrorCode.ADDRESS_NOT_FOUND.getCode());
+        log.error("Address not found. Id: {}", id);
     }
 
 }
