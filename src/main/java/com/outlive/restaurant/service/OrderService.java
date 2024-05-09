@@ -5,6 +5,7 @@ import com.outlive.restaurant.controller.dto.OrderProductStatus;
 import com.outlive.restaurant.controller.dto.OrderRequest;
 import com.outlive.restaurant.dto.OrderStatus;
 import com.outlive.restaurant.dto.ProductStatus;
+import com.outlive.restaurant.exceptions.CustomerNotFoundException;
 import com.outlive.restaurant.repository.*;
 import com.outlive.restaurant.repository.entity.*;
 import jakarta.transaction.Transactional;
@@ -51,7 +52,8 @@ public class OrderService {
     @Transactional
     public void create(OrderRequest orderRequest) {
 
-        final var customer = customerRepository.findById(UUID.fromString(orderRequest.getCustomerId())).orElseThrow(() -> new RuntimeException("Customer not found"));
+        final var customer = customerRepository.findById(UUID.fromString(orderRequest.getCustomerId()))
+                .orElseThrow(() -> new CustomerNotFoundException(orderRequest.getCustomerId()));
 
         List<OrderProductEntity> orderProducts = getOrderProducts(orderRequest);
 

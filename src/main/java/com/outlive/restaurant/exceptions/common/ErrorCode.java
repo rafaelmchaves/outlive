@@ -1,4 +1,4 @@
-package com.outlive.restaurant.exceptions;
+package com.outlive.restaurant.exceptions.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
