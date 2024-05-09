@@ -4,6 +4,7 @@ import com.outlive.restaurant.controller.dto.ProductRequest;
 import com.outlive.restaurant.controller.dto.ProductResponse;
 import com.outlive.restaurant.dto.ProductSearchDto;
 import com.outlive.restaurant.dto.ProductStatus;
+import com.outlive.restaurant.exceptions.SellerNotFoundException;
 import com.outlive.restaurant.mapper.ProductMapper;
 import com.outlive.restaurant.repository.entity.ProductEntity;
 import com.outlive.restaurant.repository.ProductRepository;
@@ -30,7 +31,7 @@ public class ProductService {
     public ProductResponse create(ProductRequest productRequest) {
 
         final var seller = this.sellerRepository.findById(UUID.fromString(productRequest.getSellerId())).orElseThrow(() ->
-                new RuntimeException("Seller not found"));
+                new SellerNotFoundException(productRequest.getSellerId()));
 
         final var entity = productMapper.convert(productRequest);
         entity.setCreation(LocalDateTime.now());
