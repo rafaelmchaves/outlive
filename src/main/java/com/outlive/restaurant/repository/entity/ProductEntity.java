@@ -35,7 +35,7 @@ public class ProductEntity {
     private ProductStatus status;
 
     @Column(name = "stock_amount")
-    private BigDecimal stockAmount;
+    private Integer stockAmount;
 
     @Column(name = "created_on")
     private LocalDateTime creation;

@@ -60,6 +60,7 @@ public class OrderService {
 
         List<OrderProductEntity> orderProducts = getOrderProducts(orderRequest);
 
+        //TODO find product and subtract stock
         final var address = addressRepository.findById(Long.valueOf(orderRequest.getAddressId())).orElseThrow(() -> new AddressNotFoundException("Address not found"));
 
         final var freight = freightService.getFreight(address.getCep(), address.getCity(), orderProducts.get(0).getProduct().getSeller().getId().toString())

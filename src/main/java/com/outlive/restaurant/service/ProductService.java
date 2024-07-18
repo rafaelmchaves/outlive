@@ -4,6 +4,7 @@ import com.outlive.restaurant.controller.dto.ProductRequest;
 import com.outlive.restaurant.controller.dto.ProductResponse;
 import com.outlive.restaurant.dto.ProductSearchDto;
 import com.outlive.restaurant.dto.ProductStatus;
+import com.outlive.restaurant.exceptions.ProductNotFoundException;
 import com.outlive.restaurant.exceptions.SellerNotFoundException;
 import com.outlive.restaurant.mapper.ProductMapper;
 import com.outlive.restaurant.repository.entity.ProductEntity;
@@ -37,6 +38,7 @@ public class ProductService {
         entity.setCreation(LocalDateTime.now());
         entity.setStatus(ProductStatus.AVAILABLE);
         entity.setSeller(seller);
+        entity.setStockAmount(0);
 
         final var persistedProduct = repository.save(entity);
         return productMapper.convert(persistedProduct);
@@ -54,4 +56,12 @@ public class ProductService {
 
         return productMapper.convert(productEntities);
     }
+
+    public void updateStock(String id, Integer amount) {
+        final var product = repository.findById(UUID.fromString(id)).orElseThrow(() -> new ProductNotFoundException(id));
+        product.setStockAmount(amount);
+        product.setUpdate(LocalDateTime.now());
+        repository.save(product);
+    }
+
 }

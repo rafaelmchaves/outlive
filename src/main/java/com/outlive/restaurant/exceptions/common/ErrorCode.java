@@ -20,7 +20,8 @@ public enum ErrorCode {
     //Products code error
     PRODUCT_UNAVAILABLE("PRD_01"),
     PRODUCT_OUT_STOCK("PRD_02"),
-    PRODUCT_PRICE_CHANGED("PRD_03");
+    PRODUCT_PRICE_CHANGED("PRD_03"),
+    PRODUCT_NOT_FOUND("PRD_04");
 
     private final String code;
 

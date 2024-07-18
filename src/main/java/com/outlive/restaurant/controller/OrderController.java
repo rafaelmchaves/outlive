@@ -23,7 +23,6 @@ public class OrderController {
 
     @PatchMapping("/orders/{id}/status")
     public ResponseEntity<OrderStatusResponse> updateStatus(@PathVariable String id, @RequestBody OrderStatusRequest orderStatusRequest) {
-
         orderService.updateStatus(orderStatusRequest.getOrderStatus(), id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
