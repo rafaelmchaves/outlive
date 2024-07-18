@@ -87,12 +87,20 @@ public class OrderService {
             final var product = productRepository.findById(UUID.fromString(orderProductRequest.getProductId()))
                     .orElseThrow(() -> new RuntimeException("Product not found"));
             validateProduct(orderProductRequest, product);
+
             orderProductEntities.add(OrderProductEntity.builder()
                     .product(product).status(OrderStatus.CREATED).quantity(orderProductRequest.getAmount())
                     .price(product.getPrice()).build());
+
+            updateStock(product);
         }
 
         return orderProductEntities;
+    }
+
+    private void updateStock(ProductEntity product) {
+        product.setStockAmount(product.getStockAmount() - 1);
+        productRepository.save(product);
     }
 
     private static void validateProduct(OrderProductRequest orderProduct, ProductEntity product) {
