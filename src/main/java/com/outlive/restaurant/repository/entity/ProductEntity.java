@@ -30,9 +30,12 @@ public class ProductEntity {
 
     private BigDecimal price;
 
-    private BigDecimal quantity;
+    private BigDecimal fraction;
 
     private ProductStatus status;
+
+    @Column(name = "stock_amount")
+    private BigDecimal stockAmount;
 
     @Column(name = "created_on")
     private LocalDateTime creation;

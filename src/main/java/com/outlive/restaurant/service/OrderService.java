@@ -98,7 +98,7 @@ public class OrderService {
     }
 
     private static boolean isOutOfStock(ProductEntity product) {
-        return product.getQuantity().compareTo(BigDecimal.ZERO) <= 0;
+        return product.getFraction().compareTo(BigDecimal.ZERO) <= 0;
     }
 
     private static BigDecimal getTotalValueOrder(OrderRequest orderRequest) {
@@ -116,6 +116,5 @@ public class OrderService {
         orderRepository.save(order);
         return order;
     }
-
 
 }
