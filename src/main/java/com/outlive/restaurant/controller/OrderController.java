@@ -1,9 +1,6 @@
 package com.outlive.restaurant.controller;
 
-import com.outlive.restaurant.controller.dto.OrderProductStatus;
-import com.outlive.restaurant.controller.dto.OrderRequest;
-import com.outlive.restaurant.controller.dto.OrderResponse;
-import com.outlive.restaurant.controller.dto.OrderStatusResponse;
+import com.outlive.restaurant.controller.dto.*;
 import com.outlive.restaurant.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,6 +19,13 @@ public class OrderController {
     public ResponseEntity<OrderStatusResponse> create(@RequestBody OrderRequest orderRequest) {
         orderService.create(orderRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PatchMapping("/orders/{id}/status")
+    public ResponseEntity<OrderStatusResponse> updateStatus(@PathVariable String id, @RequestBody OrderStatusRequest orderStatusRequest) {
+
+        orderService.updateStatus(orderStatusRequest.getOrderStatus(), id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @GetMapping("/orders/{id}/details")

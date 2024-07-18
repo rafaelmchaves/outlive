@@ -3,10 +3,12 @@ package com.outlive.restaurant.service;
 import com.outlive.restaurant.controller.dto.OrderProductRequest;
 import com.outlive.restaurant.controller.dto.OrderProductStatus;
 import com.outlive.restaurant.controller.dto.OrderRequest;
+import com.outlive.restaurant.controller.dto.OrderStatusRequest;
 import com.outlive.restaurant.dto.OrderStatus;
 import com.outlive.restaurant.dto.ProductStatus;
 import com.outlive.restaurant.exceptions.AddressNotFoundException;
 import com.outlive.restaurant.exceptions.CustomerNotFoundException;
+import com.outlive.restaurant.exceptions.OrderNotFoundException;
 import com.outlive.restaurant.repository.*;
 import com.outlive.restaurant.repository.entity.*;
 import jakarta.transaction.Transactional;
@@ -68,6 +70,13 @@ public class OrderService {
         orderProducts.forEach(orderProductEntity -> orderProductEntity.setOrder(order));
         orderProductRepository.saveAll(orderProducts);
 
+    }
+
+    public void updateStatus(OrderStatus orderStatus, String id) {
+        final var order = orderRepository.findById(UUID.fromString(id)).orElseThrow(() -> new OrderNotFoundException(id));
+        order.setStatus(orderStatus);
+        order.setUpdate(LocalDateTime.now());
+        orderRepository.save(order);
     }
 
     private List<OrderProductEntity> getOrderProducts(OrderRequest orderRequest) {

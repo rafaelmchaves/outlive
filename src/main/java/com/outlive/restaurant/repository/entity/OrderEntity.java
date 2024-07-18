@@ -47,4 +47,6 @@ public class OrderEntity {
     @Column(name = "creation_on")
     private LocalDateTime creation;
 
+    @Column(name = "update_on")
+    private LocalDateTime update;
 }

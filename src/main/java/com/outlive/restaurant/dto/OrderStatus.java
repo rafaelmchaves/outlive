@@ -3,5 +3,7 @@ package com.outlive.restaurant.dto;
 public enum OrderStatus {
 
     CREATED,
-    DELIVERED
+    READY_TO_DELIVERY,
+    DELIVERED,
+    CANCELLED
 }

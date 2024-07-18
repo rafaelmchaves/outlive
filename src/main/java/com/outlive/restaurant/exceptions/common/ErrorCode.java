@@ -15,6 +15,8 @@ public enum ErrorCode {
 
     ADDRESS_NOT_FOUND("ADS_01"),
 
+    ORDER_NOT_FOUND("ORD_01"),
+
     //Products code error
     PRODUCT_UNAVAILABLE("PRD_01"),
     PRODUCT_OUT_STOCK("PRD_02"),
