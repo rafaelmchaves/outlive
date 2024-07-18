@@ -3,7 +3,6 @@ package com.outlive.restaurant.service;
 import com.outlive.restaurant.controller.dto.OrderProductRequest;
 import com.outlive.restaurant.controller.dto.OrderProductStatus;
 import com.outlive.restaurant.controller.dto.OrderRequest;
-import com.outlive.restaurant.controller.dto.OrderStatusRequest;
 import com.outlive.restaurant.dto.OrderStatus;
 import com.outlive.restaurant.dto.ProductStatus;
 import com.outlive.restaurant.exceptions.AddressNotFoundException;
