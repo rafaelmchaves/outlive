@@ -1,7 +1,6 @@
 package com.outlive.restaurant.service;
 
 import com.outlive.restaurant.controller.dto.FreightRequest;
-import com.outlive.restaurant.repository.AddressRepository;
 import com.outlive.restaurant.repository.FreightRepository;
 import com.outlive.restaurant.repository.SellerRepository;
 import com.outlive.restaurant.repository.entity.FreightEntity;
@@ -18,8 +17,6 @@ public class FreightService {
     private final FreightRepository repository;
 
     private final SellerRepository sellerRepository;
-
-    private final AddressRepository addressRepository;
 
     public void updateFreight(FreightRequest freightRequest) {
 
