@@ -26,4 +26,5 @@ public class ExpenseEntity {
     private BigDecimal value;
 
     private LocalDateTime creation;
+
 }
