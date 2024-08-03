@@ -16,8 +16,8 @@ public class ProductResponse {
     private String description;
     private ProductType type;
     private BigDecimal price;
-    private BigDecimal quantity;
+    private BigDecimal fraction;
     private ProductStatus status;
     private SellerResponse seller;
-
+    private String image;
 }

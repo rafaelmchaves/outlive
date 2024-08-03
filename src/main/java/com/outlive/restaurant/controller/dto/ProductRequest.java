@@ -14,7 +14,7 @@ public class ProductRequest {
     private String description;
     private ProductType type;
     private BigDecimal price;
-    private BigDecimal quantity;
+    private BigDecimal fraction;
     private String sellerId;
 
 }
