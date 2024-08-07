@@ -15,6 +15,8 @@ public class OrderRequest {
 
     private String addressId;
 
+    private String addressText;
+
     private String paymentMethod;
 
 }

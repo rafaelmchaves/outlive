@@ -2,9 +2,12 @@ package com.outlive.restaurant.service;
 
 import com.outlive.restaurant.controller.dto.AddressRequest;
 import com.outlive.restaurant.controller.dto.AddressResponse;
+import com.outlive.restaurant.controller.dto.OrderRequest;
 import com.outlive.restaurant.mapper.AddressMapper;
 import com.outlive.restaurant.repository.AddressRepository;
 import com.outlive.restaurant.repository.UserRepository;
+import com.outlive.restaurant.repository.entity.AddressEntity;
+import com.outlive.restaurant.repository.entity.CustomerEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +36,12 @@ public class AddressService {
         final var savedAddress = repository.save(address);
 
         return addressMapper.get(savedAddress);
+    }
+
+    public AddressEntity createGenericAddress(OrderRequest orderRequest, CustomerEntity customer) {
+        AddressEntity address;
+        address = AddressEntity.builder().cep("00000000").address(orderRequest.getAddressText()).state("").city("").user(customer.getUser()).build();
+        address = repository.save(address);
+        return address;
     }
 }

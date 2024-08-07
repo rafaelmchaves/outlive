@@ -37,6 +37,8 @@ public class OrderService {
 
     private final OrderProductRepository orderProductRepository;
 
+    private final AddressService addressService;
+
     public List<OrderEntity> getOrders(String customerId, int page, int size) {
         return orderRepository.findByCustomerId(UUID.fromString(customerId), PageRequest.of(page, size));
     }
@@ -59,16 +61,20 @@ public class OrderService {
 
         List<OrderProductEntity> orderProducts = getOrderProducts(orderRequest);
 
-        final var address = addressRepository.findById(Long.valueOf(orderRequest.getAddressId())).orElseThrow(() -> new AddressNotFoundException("Address not found"));
-
-        final var freight = freightService.getFreight(address.getCep(), address.getCity(), orderProducts.get(0).getProduct().getSeller().getId().toString())
-                .orElseThrow(() -> new RuntimeException("There was a problem in our calculation of freight. Enter in contact with our support"));
+        AddressEntity address = null;
+        var freight = FreightEntity.builder().price(BigDecimal.ZERO).build();
+        if (orderRequest.getAddressId() != null) {
+            address = addressRepository.findById(Long.valueOf(orderRequest.getAddressId())).orElseThrow(() -> new AddressNotFoundException("Address not found"));
+            freight = freightService.getFreight(address.getCep(), address.getCity(), orderProducts.get(0).getProduct().getSeller().getId().toString())
+                    .orElseThrow(() -> new RuntimeException("There was a problem in our calculation of freight. Enter in contact with our support"));
+        } else {
+            address = addressService.createGenericAddress(orderRequest, customer);
+        }
 
         final OrderEntity order = createOrder(orderRequest, customer, address, freight, getTotalValueOrder(orderRequest));
 
         orderProducts.forEach(orderProductEntity -> orderProductEntity.setOrder(order));
         orderProductRepository.saveAll(orderProducts);
-
     }
 
     public void updateStatus(OrderStatus orderStatus, String id) {
@@ -108,7 +114,7 @@ public class OrderService {
         if (isOutOfStock(product)) {
             throw new RuntimeException("Product is out of stock");
         }
-        if (!orderProduct.getPrice().equals(product.getPrice())) {
+        if (!orderProduct.getPrice().setScale(2).equals(product.getPrice().setScale(2))) {
             throw new RuntimeException("The price of product changed");
         }
     }
